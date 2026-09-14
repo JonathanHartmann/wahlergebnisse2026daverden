@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kreiswahl Verden — Daverden &amp; Langwedel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#eeece4;
+    --ink:#1c2430;
+    --ink-soft:#4b5563;
+    --line:#d7d3c6;
+    --oxblood:#7a2e2e;
+    --moss:#5c6b4a;
+    --card:#f8f7f2;
+    --track:#e2ded0;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+  }
+  .wrap{
+    max-width:880px;
+    margin:0 auto;
+    padding:64px 24px 96px;
+  }
+  header.hero{
+    border-bottom:2px solid var(--ink);
+    padding-bottom:36px;
+    margin-bottom:48px;
+  }
+  .hero-date{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    color:var(--ink-soft);
+    letter-spacing:0.02em;
+    margin:0 0 18px;
+  }
+  h1{
+    font-family:'Fraunces',serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(32px,5vw,52px);
+    line-height:1.05;
+    margin:0 0 12px;
+    letter-spacing:-0.01em;
+  }
+  .hero-sub{
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:56ch;
+    margin:0 0 28px;
+  }
+  .hero-stats{
+    display:flex;
+    gap:40px;
+    flex-wrap:wrap;
+  }
+  .hero-stat b{
+    display:block;
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:34px;
+    line-height:1;
+  }
+  .hero-stat span{
+    display:block;
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-top:6px;
+  }
+
+  h2.section-title{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:26px;
+    margin:0 0 6px;
+  }
+  .section-note{
+    color:var(--ink-soft);
+    font-size:14.5px;
+    margin:0 0 28px;
+    max-width:60ch;
+  }
+  section.area{
+    margin-bottom:56px;
+  }
+
+  .overview-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-bottom:40px;
+  }
+  @media (max-width:640px){ .overview-row{grid-template-columns:1fr;} }
+
+  .overview-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    padding:22px 24px;
+  }
+  .overview-card h3{
+    font-family:'Fraunces',serif;
+    font-size:19px;
+    font-weight:600;
+    margin:0 0 4px;
+  }
+  .overview-card .turnout{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin:0 0 16px;
+  }
+
+  .bar-row{
+    display:grid;
+    grid-template-columns:118px 1fr 64px;
+    align-items:center;
+    gap:10px;
+    margin-bottom:7px;
+  }
+  .bar-row .party{
+    font-size:13px;
+    font-weight:500;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .bar-track{
+    position:relative;
+    height:15px;
+    background:var(--track);
+  }
+  .bar-fill{
+    position:absolute;
+    top:0; left:0; bottom:0;
+    background:var(--chip,var(--ink));
+  }
+  .bar-row .pct{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    text-align:right;
+  }
+  .chip{
+    display:inline-block;
+    width:9px;height:9px;
+    margin-right:7px;
+    border-radius:1px;
+    background:var(--chip,var(--ink));
+    vertical-align:1px;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  @media (max-width:640px){ .grid{grid-template-columns:1fr;} }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    padding:24px 26px;
+  }
+  .card h3{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:20px;
+    margin:0 0 2px;
+  }
+  .card .meta{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    margin:0 0 18px;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--line);
+  }
+
+  footer{
+    margin-top:64px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    font-size:13px;
+    color:var(--ink-soft);
+    max-width:70ch;
+  }
+  footer p{margin:0 0 10px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <p class="hero-date">13.09.2026 · Kreiswahl · Landkreis Verden · AGS 03361006</p>
+    <h1>Daverden &amp; Langwedel im Detail</h1>
+    <p class="hero-sub">Acht Wahlbezirke aus zwei Gemeinden im Vergleich: die Ortsbezirke Daverden 1–3 und Langwedel 1–3 sowie die zugehörigen Briefwahlbezirke.</p>
+    <div class="hero-stats" id="heroStats"></div>
+  </header>
+
+  <section class="area">
+    <h2 class="section-title">Gesamtbild beider Gemeinden</h2>
+    <p class="section-note">Stimmenanteile je Partei, summiert über alle acht ausgewählten Wahlbezirke (Urnen- und Briefwahl).</p>
+    <div class="overview-row">
+      <div class="overview-card" id="ovDaverden"></div>
+      <div class="overview-card" id="ovLangwedel"></div>
+    </div>
+  </section>
+
+  <section class="area">
+    <h2 class="section-title">Daverden</h2>
+    <p class="section-note">Wahlbezirke 1 bis 3 sowie Briefwahlbezirk 4.</p>
+    <div class="grid" id="gridDaverden"></div>
+  </section>
+
+  <section class="area">
+    <h2 class="section-title">Langwedel</h2>
+    <p class="section-note">Wahlbezirke 1 bis 3 sowie Briefwahlbezirk 5.</p>
+    <div class="grid" id="gridLangwedel"></div>
+  </section>
+
+  <footer>
+    <p><strong>Zur Lesart:</strong> Bei dieser Kreiswahl können Stimmen kumuliert und panaschiert werden — die Spalte „Gültige Stimmen“ zählt daher alle abgegebenen Einzelstimmen und liegt deutlich über der Zahl der Wähler:innen. Die Balken zeigen den Anteil jeder Partei an diesen Gesamtstimmen. Bei Briefwahlbezirken liegt keine separate Zahl an Wahlberechtigten vor, da die Stimmen zentral für die jeweilige Gemeinde erfasst werden.</p>
+    <p>Quelle: Open-Data-Datei „Open-Data-03361006-Kreiswahl-Wahlbezirk.csv“, Datenstand 13.09.2026.</p>
+  </footer>
+
+</div>
+
+<script>
+const PARTY_COLORS = {
+  'CDU':'#1c2430',
+  'SPD':'#c22a2a',
+  'Grüne':'#5c8c3e',
+  'FDP':'#d6a916',
+  'AfD':'#2f7fb0',
+  'Linke':'#a6266f',
+  'Freie Wähler':'#d67a2a',
+  'BSW':'#7a4fa0',
+  'UBL Thedinghausen':'#6b7a63',
+  'WG Achim':'#8a8578'
+};
+
+const precincts = [
+  {name:'Daverden 1', A:714, B:365, D:964,
+   votes:{CDU:349,SPD:247,'Grüne':127,FDP:19,AfD:158,Linke:34,'Freie Wähler':8,BSW:17,'UBL Thedinghausen':5,'WG Achim':0}},
+  {name:'Daverden 2', A:758, B:360, D:1057,
+   votes:{CDU:325,SPD:290,'Grüne':170,FDP:17,AfD:204,Linke:26,'Freie Wähler':6,BSW:14,'UBL Thedinghausen':5,'WG Achim':0}},
+  {name:'Daverden 3', A:751, B:399, D:1164,
+   votes:{CDU:395,SPD:316,'Grüne':142,FDP:14,AfD:212,Linke:51,'Freie Wähler':10,BSW:21,'UBL Thedinghausen':3,'WG Achim':0}},
+  {name:'Briefwahl 4 – Daverden', A:null, B:520, D:1544,
+   votes:{CDU:639,SPD:456,'Grüne':220,FDP:38,AfD:139,Linke:12,'Freie Wähler':13,BSW:25,'UBL Thedinghausen':2,'WG Achim':0}},
+  {name:'Langwedel 1', A:818, B:321, D:917,
+   votes:{CDU:269,SPD:268,'Grüne':106,FDP:11,AfD:198,Linke:31,'Freie Wähler':12,BSW:19,'UBL Thedinghausen':3,'WG Achim':0}},
+  {name:'Langwedel 2', A:722, B:322, D:928,
+   votes:{CDU:350,SPD:237,'Grüne':98,FDP:9,AfD:163,Linke:25,'Freie Wähler':15,BSW:27,'UBL Thedinghausen':4,'WG Achim':0}},
+  {name:'Langwedel 3', A:892, B:424, D:1236,
+   votes:{CDU:380,SPD:382,'Grüne':179,FDP:23,AfD:186,Linke:47,'Freie Wähler':14,BSW:18,'UBL Thedinghausen':7,'WG Achim':0}},
+  {name:'Briefwahl 5 – Langwedel', A:null, B:558, D:1652,
+   votes:{CDU:682,SPD:492,'Grüne':193,FDP:17,AfD:179,Linke:47,'Freie Wähler':12,BSW:22,'UBL Thedinghausen':8,'WG Achim':0}},
+];
+
+function aggregate(names){
+  const out = {A:0,B:0,D:0,votes:{}};
+  Object.keys(PARTY_COLORS).forEach(p=>out.votes[p]=0);
+  precincts.forEach(pr=>{
+    if(names.includes(pr.name)){
+      out.A += pr.A||0; out.B += pr.B||0; out.D += pr.D;
+      Object.keys(pr.votes).forEach(p=>out.votes[p]+=pr.votes[p]);
+    }
+  });
+  return out;
+}
+
+const daverdenNames = ['Daverden 1','Daverden 2','Daverden 3','Briefwahl 4 – Daverden'];
+const langwedelNames = ['Langwedel 1','Langwedel 2','Langwedel 3','Briefwahl 5 – Langwedel'];
+const daverdenAgg = aggregate(daverdenNames);
+const langwedelAgg = aggregate(langwedelNames);
+const gesamtAgg = aggregate([...daverdenNames, ...langwedelNames]);
+
+function sortedParties(votes){
+  return Object.entries(votes).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]);
+}
+
+function barsHTML(votes, total, maxRows){
+  const entries = sortedParties(votes).slice(0, maxRows || 99);
+  const maxV = entries.length ? entries[0][1] : 1;
+  return entries.map(([name,v])=>{
+    const pct = total ? (v/total*100) : 0;
+    const width = (v/maxV*100).toFixed(1);
+    const color = PARTY_COLORS[name] || '#888';
+    return `<div class="bar-row">
+      <div class="party"><span class="chip" style="--chip:${color}"></span>${name}</div>
+      <div class="bar-track"><div class="bar-fill" style="--chip:${color};width:${width}%"></div></div>
+      <div class="pct">${pct.toFixed(1)}%</div>
+    </div>`;
+  }).join('');
+}
+
+function precinctCard(pr){
+  const turnout = pr.A ? `Wahlbeteiligung ${(pr.B/pr.A*100).toFixed(1).replace('.',',')}%  ·  ${pr.A.toLocaleString('de-DE')} Wahlberechtigte  ·  ${pr.B.toLocaleString('de-DE')} Wähler`
+                       : `Briefwahl  ·  ${pr.B.toLocaleString('de-DE')} Wähler`;
+  return `<div class="card">
+    <h3>${pr.name}</h3>
+    <p class="meta">${turnout}  ·  ${pr.D.toLocaleString('de-DE')} gültige Stimmen</p>
+    ${barsHTML(pr.votes, pr.D)}
+  </div>`;
+}
+
+function overviewCard(title, agg){
+  const turnout = agg.A ? `${(agg.B/agg.A*100).toFixed(1).replace('.',',')}% Wahlbeteiligung (Urne)  ·  ${agg.B.toLocaleString('de-DE')} Wähler gesamt` : '';
+  return `<h3>${title}</h3>
+    <p class="turnout">${turnout}  ·  ${agg.D.toLocaleString('de-DE')} gültige Stimmen</p>
+    ${barsHTML(agg.votes, agg.D, 6)}`;
+}
+
+document.getElementById('gridDaverden').innerHTML = precincts.filter(p=>daverdenNames.includes(p.name)).map(precinctCard).join('');
+document.getElementById('gridLangwedel').innerHTML = precincts.filter(p=>langwedelNames.includes(p.name)).map(precinctCard).join('');
+document.getElementById('ovDaverden').innerHTML = overviewCard('Daverden gesamt', daverdenAgg);
+document.getElementById('ovLangwedel').innerHTML = overviewCard('Langwedel gesamt', langwedelAgg);
+
+const leading = sortedParties(gesamtAgg.votes)[0];
+const leadPct = (leading[1]/gesamtAgg.D*100).toFixed(1).replace('.',',');
+document.getElementById('heroStats').innerHTML = `
+  <div class="hero-stat"><b>${leading[0]}</b><span>stärkste Kraft, ${leadPct}% der Stimmen</span></div>
+  <div class="hero-stat"><b>${gesamtAgg.B.toLocaleString('de-DE')}</b><span>Wähler:innen insgesamt</span></div>
+  <div class="hero-stat"><b>${gesamtAgg.D.toLocaleString('de-DE')}</b><span>gültige Stimmen insgesamt</span></div>
+`;
+</script>
+</body>
+</html>
