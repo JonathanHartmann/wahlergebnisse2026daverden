@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kreiswahl Verden — Vergleich 2026 zu 2021</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#eeece4;
+    --ink:#1c2430;
+    --ink-soft:#4b5563;
+    --line:#d7d3c6;
+    --oxblood:#7a2e2e;
+    --moss:#5c6b4a;
+    --card:#f8f7f2;
+    --track:#e2ded0;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+  }
+  .wrap{
+    max-width:880px;
+    margin:0 auto;
+    padding:64px 24px 96px;
+  }
+  header.hero{
+    border-bottom:2px solid var(--ink);
+    padding-bottom:36px;
+    margin-bottom:48px;
+  }
+  .hero-date{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    color:var(--ink-soft);
+    letter-spacing:0.02em;
+    margin:0 0 18px;
+  }
+  h1{
+    font-family:'Fraunces',serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(32px,5vw,52px);
+    line-height:1.05;
+    margin:0 0 12px;
+    letter-spacing:-0.01em;
+  }
+  .hero-sub{
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:60ch;
+    margin:0 0 28px;
+  }
+  .legend{
+    display:flex;
+    gap:24px;
+    flex-wrap:wrap;
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+  .legend span{display:inline-flex;align-items:center;gap:7px;}
+  .legend i{width:11px;height:11px;display:inline-block;}
+
+  h2.section-title{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:26px;
+    margin:0 0 6px;
+  }
+  .section-note{
+    color:var(--ink-soft);
+    font-size:14.5px;
+    margin:0 0 24px;
+    max-width:64ch;
+  }
+  section.area{margin-bottom:56px;}
+
+  .stat-row{
+    display:flex;
+    gap:32px;
+    flex-wrap:wrap;
+    margin-bottom:26px;
+    padding-bottom:20px;
+    border-bottom:1px solid var(--line);
+  }
+  .stat b{
+    display:block;
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:24px;
+  }
+  .stat span{
+    display:block;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin-top:3px;
+  }
+  .stat b.up{color:var(--moss);}
+  .stat b.down{color:var(--oxblood);}
+
+  .diverge-row{
+    display:grid;
+    grid-template-columns:120px 1fr 96px;
+    align-items:center;
+    gap:12px;
+    margin-bottom:9px;
+  }
+  .diverge-row .party{
+    font-size:13px;
+    font-weight:500;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .diverge-track{
+    position:relative;
+    height:16px;
+    background:var(--track);
+  }
+  .diverge-track::after{
+    content:'';
+    position:absolute;
+    left:50%; top:-3px; bottom:-3px;
+    width:1px;
+    background:var(--ink);
+    opacity:0.35;
+  }
+  .diverge-fill{
+    position:absolute;
+    top:0; bottom:0;
+  }
+  .diverge-row .delta{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    text-align:right;
+    white-space:nowrap;
+  }
+  .diverge-row .delta.up{color:var(--moss);}
+  .diverge-row .delta.down{color:var(--oxblood);}
+
+  table.votes{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:28px;
+    font-size:13px;
+  }
+  table.votes caption{
+    text-align:left;
+    font-family:'Fraunces',serif;
+    font-size:15px;
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  table.votes th, table.votes td{
+    text-align:right;
+    padding:7px 10px;
+    border-bottom:1px solid var(--line);
+    font-family:'IBM Plex Mono',monospace;
+  }
+  table.votes th:first-child, table.votes td:first-child{
+    text-align:left;
+    font-family:'Inter',sans-serif;
+    font-weight:500;
+  }
+  table.votes thead th{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    color:var(--ink-soft);
+    font-size:12px;
+    border-bottom:1px solid var(--ink);
+  }
+
+  footer{
+    margin-top:64px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    font-size:13px;
+    color:var(--ink-soft);
+    max-width:70ch;
+  }
+  footer p{margin:0 0 10px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <p class="hero-date">Vergleich · Kreiswahl 12.09.2021 → 13.09.2026 · Landkreis Verden</p>
+    <h1>Was sich seit 2021 verschoben hat</h1>
+    <p class="hero-sub">Da die Wahlbezirke 2021 anders zugeschnitten waren (je zwei statt drei Urnenbezirke je Gemeinde), werden Daverden und Langwedel hier jeweils als Ganzes verglichen — inklusive Briefwahl.</p>
+    <div class="legend">
+      <span><i style="background:var(--moss)"></i> Zugewinn gegenüber 2021</span>
+      <span><i style="background:var(--oxblood)"></i> Verlust gegenüber 2021</span>
+    </div>
+  </header>
+
+  <section class="area" id="secDaverden"></section>
+  <section class="area" id="secLangwedel"></section>
+
+  <footer>
+    <p><strong>Zur Lesart:</strong> Die Balken zeigen die Veränderung des Stimmenanteils in Prozentpunkten (Anteil an allen gültigen Einzelstimmen, da kumuliert und panaschiert werden konnte). BSW trat 2021 noch nicht an und startet daher bei 0%. Die Wahlbeteiligung wird nur für die Urnenwahlbezirke ausgewiesen, da für Briefwahlbezirke keine separate Zahl an Wahlberechtigten vorliegt.</p>
+    <p>Quellen: „Open-Data-03361006-Kreiswahl-Wahlbezirk.csv" (2026) und „Open-Data-Kreiswahl-NDS2196.csv" (2021).</p>
+  </footer>
+
+</div>
+
+<script>
+const PARTY_COLORS = {
+  'CDU':'#1c2430','SPD':'#c22a2a','Grüne':'#5c8c3e','FDP':'#d6a916','AfD':'#2f7fb0',
+  'Linke':'#a6266f','Freie Wähler':'#d67a2a','BSW':'#7a4fa0','UBL Thedinghausen':'#6b7a63'
+};
+const MAX_PP = 12; // Skalenmaximum für die Diverging-Bars, für beide Gemeinden gleich
+
+const areas = [
+  {
+    key:'daverden', title:'Daverden', note:'Wahlbezirke 1–3 und Briefwahlbezirk 4 (2026) bzw. Wahlbezirke 1–2 und Briefwahl Daverden (2021).',
+    y2021:{A:2268,B:1457,D:4307,votes:{CDU:1680,SPD:1418,'Grüne':622,AfD:297,FDP:190,Linke:52,'Freie Wähler':40,'UBL Thedinghausen':8,BSW:0}},
+    y2026:{A:2223,B:1644,D:4729,votes:{CDU:1708,SPD:1309,'Grüne':659,FDP:88,AfD:713,Linke:123,'Freie Wähler':37,BSW:77,'UBL Thedinghausen':15}},
+  },
+  {
+    key:'langwedel', title:'Langwedel', note:'Wahlbezirke 1–3 und Briefwahlbezirk 5 (2026) bzw. Wahlbezirke 1–2 und Briefwahl Langwedel (2021).',
+    y2021:{A:2391,B:1447,D:4210,votes:{CDU:1456,SPD:1550,'Grüne':571,AfD:216,FDP:207,Linke:105,'Freie Wähler':94,'UBL Thedinghausen':11,BSW:0}},
+    y2026:{A:2432,B:1625,D:4733,votes:{CDU:1681,SPD:1379,'Grüne':576,FDP:60,AfD:726,Linke:150,'Freie Wähler':53,BSW:86,'UBL Thedinghausen':22}},
+  },
+];
+
+function pct(v,total){ return total ? v/total*100 : 0; }
+function fmtPP(v){ const s = v>=0?'+':''; return s + v.toFixed(1).replace('.',',') + ' pp'; }
+function fmtPct(v){ return v.toFixed(1).replace('.',',') + '%'; }
+
+function divergeRow(name, pct21, pct26){
+  const diff = pct26 - pct21;
+  const color = PARTY_COLORS[name] || '#888';
+  const cls = diff >= 0 ? 'up' : 'down';
+  const widthPct = Math.min(Math.abs(diff)/MAX_PP*50, 50);
+  const style = diff >= 0
+    ? `left:50%; width:${widthPct}%; background:${color};`
+    : `right:50%; width:${widthPct}%; background:${color};`;
+  return `<div class="diverge-row">
+    <div class="party">${name}</div>
+    <div class="diverge-track"><div class="diverge-fill" style="${style}"></div></div>
+    <div class="delta ${cls}">${fmtPP(diff)}</div>
+  </div>`;
+}
+
+function tableRows(area){
+  const parties = Object.keys(PARTY_COLORS);
+  return parties.map(p=>{
+    const v21 = area.y2021.votes[p]||0, v26 = area.y2026.votes[p]||0;
+    const p21 = pct(v21, area.y2021.D), p26 = pct(v26, area.y2026.D);
+    return `<tr>
+      <td>${p}</td>
+      <td>${v21.toLocaleString('de-DE')}</td>
+      <td>${fmtPct(p21)}</td>
+      <td>${v26.toLocaleString('de-DE')}</td>
+      <td>${fmtPct(p26)}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderArea(area){
+  const turnout21 = area.y2021.B/area.y2021.A*100;
+  const turnout26 = area.y2026.B/area.y2026.A*100;
+  const tDiff = turnout26 - turnout21;
+  const voteDiff = area.y2026.D - area.y2021.D;
+
+  // sortieren nach Anteil 2026 absteigend
+  const parties = Object.keys(PARTY_COLORS).sort((a,b)=>{
+    const pa = pct(area.y2026.votes[a]||0, area.y2026.D);
+    const pb = pct(area.y2026.votes[b]||0, area.y2026.D);
+    return pb-pa;
+  });
+
+  const bars = parties.map(p=>{
+    const p21 = pct(area.y2021.votes[p]||0, area.y2021.D);
+    const p26 = pct(area.y2026.votes[p]||0, area.y2026.D);
+    return divergeRow(p, p21, p26);
+  }).join('');
+
+  return `
+    <h2 class="section-title">${area.title}</h2>
+    <p class="section-note">${area.note}</p>
+    <div class="stat-row">
+      <div class="stat"><b class="${tDiff>=0?'up':'down'}">${fmtPct(turnout26)}</b><span>Wahlbeteiligung 2026 (2021: ${fmtPct(turnout21)}, ${fmtPP(tDiff)})</span></div>
+      <div class="stat"><b>${area.y2026.D.toLocaleString('de-DE')}</b><span>gültige Stimmen 2026 (2021: ${area.y2021.D.toLocaleString('de-DE')}, ${voteDiff>=0?'+':''}${voteDiff.toLocaleString('de-DE')})</span></div>
+    </div>
+    ${bars}
+    <table class="votes">
+      <caption>Stimmen und Anteile im Detail</caption>
+      <thead><tr><th>Partei</th><th>2021</th><th>Anteil</th><th>2026</th><th>Anteil</th></tr></thead>
+      <tbody>${tableRows(area)}</tbody>
+    </table>
+  `;
+}
+
+document.getElementById('secDaverden').innerHTML = renderArea(areas[0]);
+document.getElementById('secLangwedel').innerHTML = renderArea(areas[1]);
+</script>
+</body>
+</html>
